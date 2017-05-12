@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
 
-  USER, PASSWORD = 'jungle', 'book'
   before_filter :authentication_check
+
   def index
     @categories = Category.all.order(created_at: :desc)
   end
@@ -31,9 +31,5 @@ class Admin::CategoriesController < ApplicationController
       :name
     )
   end
-    def authentication_check
-    authenticate_or_request_with_http_basic do |user, password|
-      user == USER && password == PASSWORD
-    end
-  end
+
 end

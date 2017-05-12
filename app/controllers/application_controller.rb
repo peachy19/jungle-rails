@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-
+  USER, PASSWORD = ENV["USERNAME"], ENV["PASSWORD"]
 
 
   def current_user
@@ -35,6 +35,11 @@ class ApplicationController < ActionController::Base
     cookies[:cart]
   end
 
+  def authentication_check
+    authenticate_or_request_with_http_basic do |user, password|
+      user == USER && password == PASSWORD
+    end
+  end
 
 
 end
