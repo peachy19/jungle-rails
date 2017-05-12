@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your order has been confirmed, <%= @user.firstname %></h1>
+    <h4>You have ordered:</h4><br>
+    <% @order.line_items.each do |item| %>
+    <p><%= item.product.name %></p>
+
+    <% end %>
+  </body>
+</html>

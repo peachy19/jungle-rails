@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
 
     if order.valid?
+      # Tell the UserMailer to send a welcome email after save
+      UserMailer.order_confirmation(current_user, order).deliver_now
       empty_cart!
       redirect_to order, notice: 'Your Order has been placed.'
     else
