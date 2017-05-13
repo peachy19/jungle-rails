@@ -24,10 +24,16 @@
           <dd><%= @product.price %></dd>
           <p>Reviews</p>
           <% @product.reviews.sort_by {|k,v| v}.reverse.each do |review|%>
+          <div>
+            <p>By <%= review.user.firstname %>
+            <% if current_user == review.user%>
+            <%= link_to fa_icon('trash'), product_review_path(@product.id, review.id), class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
             <dt>Description</dt>
             <dd><%=review.description %></dd>
             <dt>Rating</dt>
             <dd><%= review.rating %></dd>
+            </div>
           <% end %>
           <% if current_user %>
            <%= form_for [@product, @review] do |form| %>
