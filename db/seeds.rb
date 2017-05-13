@@ -67,7 +67,7 @@ cat1.products.create!({
   price: 25.00
 })
 
-cat1.products.create!({
+prodshoes = cat1.products.create!({
   name:  'Russian Spy Shoes',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('apparel5.jpg'),
@@ -84,7 +84,7 @@ cat1.products.create!({
 })
 
 
-cat2.products.create!({
+prodskates = cat2.products.create!({
   name:  'Modern Skateboards',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('electronics1.jpg'),
@@ -116,7 +116,7 @@ cat3.products.create!({
   price: 3_052.00
 })
 
-cat3.products.create!({
+prodchair = cat3.products.create!({
   name:  'Electric Chair',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture2.jpg'),
@@ -132,5 +132,8 @@ cat3.products.create!({
   price: 2_483.75
 })
 
-
+user1 = User.find(1)
+prodskates.reviews.create!(description: "They are too good", rating: 5, user: user1)
+prodshoes.reviews.create!(description: "Not so great", rating: 2, user: user1)
+prodchair.reviews.create!(description: "Fine", rating: 3, user: user1)
 puts "DONE!"

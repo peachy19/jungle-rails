@@ -22,6 +22,32 @@
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
           <dd><%= @product.price %></dd>
+          <p>Reviews</p>
+          <% @product.reviews.sort_by {|k,v| v}.reverse.each do |review|%>
+            <dt>Description</dt>
+            <dd><%=review.description %></dd>
+            <dt>Rating</dt>
+            <dd><%= review.rating %></dd>
+          <% end %>
+          <% if current_user %>
+           <%= form_for [@product, @review] do |form| %>
+            <div class="field">
+              <%= form.label :description %>
+              <%= form.text_area :description, id: :review_description %>
+            </div>
+
+            <div class="field">
+              <%= form.label :rating %>
+              <%= form.number_field :rating, id: :review_rating %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit %>
+            </div>
+        <% end %>
+        <% end %>
+
+
         </dl>
       </div>
     </div>
