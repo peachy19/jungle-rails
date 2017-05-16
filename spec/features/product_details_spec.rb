@@ -19,6 +19,8 @@ RSpec.feature "Product Details", type: :feature, js: true do
   scenario "User can navigate from home page to product details page" do
     visit '/'
     first('article.product').first('a').click
-    expect(page).to have_css('.products-show')
+    product_name = first('article.product').find('h4').text
+     # expect(page).to have_css('.products-show')
+    expect(page).to have_content product_name
   end
 end
