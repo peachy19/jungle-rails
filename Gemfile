@@ -55,6 +55,15 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  # Integration testing framework
+  gem 'capybara'
+  # a driver for Capybara that allows you to run your tests on a headless WebKit
+  gem 'poltergeist'
+  #
+  gem 'database_cleaner'
+end
+
 group :production do
   gem 'newrelic_rpm'
   gem 'rails_12factor'
