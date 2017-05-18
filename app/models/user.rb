@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     user = User.find_by_email(email.strip.downcase)
       if user && user.authenticate(password)
         user
-      end
     end
+  end
 
 end
